@@ -13,6 +13,7 @@ if end of string and 0 then find out if run of 0s is odd.
 if char is 1, then check if there was a run
 
 """
+import re
 def is_odd(numb):
     if numb % 2 != 0:
         return True
@@ -64,5 +65,19 @@ for item in bin_list:
     for c,b in a.items():
         if b[0] == '0' and is_odd(b[1]):
             odd = "has odd"
-    print (item, a, odd)
+    print (item, odd)
 
+# attempt at using re to find the pattern. Can't figure it out
+for item in bin_list:
+    zeros_list =[]
+    zeros = '0'
+    hasodd = 'none'
+    for i in range(1,len(str(item))+1,2):
+        zeros = '0' * i
+        zeros_list.append(zeros)
+    for zero in zeros_list:
+        a = re.compile(zero)
+        b = a.match(item)
+        if b:
+            hasodd = 'does'
+    print (item,hasodd)
