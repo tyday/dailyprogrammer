@@ -58,23 +58,11 @@ for i in range (1,21):
     print(str(i), "{0:b}".format(i))
     bin_list.append("{0:b}".format(i))
 print(bin_list)
-print('100112235',streak_list('100112235'))
-print('100112235',streak_list2('100112235'))
-print('1001100035',streak_list2('1001100035'))
-# i=1
-# for elem in bin_list:
-#     i = 0   #reset index and streak length to 0
-#     j = 0
-#     streak = False  # set streak to false
-#     while i < len(elem):
-#         i += 1
-#         if elem[i-1] == 0:  # if element is zero add 1 to j and make sure streak is true
-#             streak = True
-#             j += 1
-#                             # I want to set an else here, but I need to wait to evaluate
-#         elif j % 2 != 0:
-            
-#         if i = len(elem) and streak = True:
-#             if j % 2 != 0:
-#                 print('Elem:', elem, '1','Count:', j)
-#     print('Elem:', elem, 'Count:', j)
+for item in bin_list:
+    odd = "no odd"
+    a = streak_list2(item)
+    for c,b in a.items():
+        if b[0] == '0' and is_odd(b[1]):
+            odd = "has odd"
+    print (item, a, odd)
+
