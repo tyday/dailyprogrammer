@@ -67,17 +67,32 @@ for item in bin_list:
             odd = "has odd"
     print (item, odd)
 
+test = False
+numb = 1
+streak = 0
+listofstreaks = []
+while streak < 20:
+    bin_numb = "{0:b}".format(numb)
+    a = streak_list2(bin_numb)
+    for c,b in a.items():
+        if b[0] == '0' and not is_odd(b[1]):
+            listofstreaks.append(bin_numb)
+            streak += 1
+    numb += 1
+print(listofstreaks)
+
+
 # attempt at using re to find the pattern. Can't figure it out
-for item in bin_list:
-    zeros_list =[]
-    zeros = '0'
-    hasodd = 'none'
-    for i in range(1,len(str(item))+1,2):
-        zeros = '0' * i
-        zeros_list.append(zeros)
-    for zero in zeros_list:
-        a = re.compile(zero)
-        b = a.match(item)
-        if b:
-            hasodd = 'does'
-    print (item,hasodd)
+# for item in bin_list:
+#     zeros_list =[]
+#     zeros = '0'
+#     hasodd = 'none'
+#     for i in range(1,len(str(item))+1,2):
+#         zeros = '0' * i
+#         zeros_list.append(zeros)
+#     for zero in zeros_list:
+#         a = re.compile(zero)
+#         b = a.match(item)
+#         if b:
+#             hasodd = 'does'
+#     print (item,hasodd)
