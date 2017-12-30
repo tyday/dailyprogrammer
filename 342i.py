@@ -11,9 +11,8 @@ ASII character:
 
 """
 
-def encode_string(sentence):
-    ascii_list = [ord(x) for x in sentence] #convert sentence into a list of ascii values
-    print(ascii_list)
+def encode_string(word): # word is a 4 byte/ 32 bit length
+    ascii_list = [ord(x) for x in word] #convert word into a list of ascii values
     byte_string = ''
     # convert ascii values to binary... ensure length is in multiples of 4(8 is a byte)
     for x in ascii_list:
@@ -21,11 +20,29 @@ def encode_string(sentence):
         while len(byte) % 4 != 0:
             byte = '0' + byte
         byte_string += byte
-    # Convert the bytestring
-    byte_string = int(byte_string)
-    newvalue = "{0:d}".format(byte_string)
-    #newvalue.encode('hex'), 16
-    print(newvalue)
+    # Convert the 32 bit binary string to integer
+    converted = int(byte_string,2)
+    converted_list = []
+    #divide it into 4 numbers
+    x = converted
+    print(x)
+    # Repeatedly divide by 85 keeping the remainder until result is less than 85
+    # This gives us the base number for the encoding
+    while x != 0: 
+        x,converted = divmod(x,85)
+        converted_list.append(converted)
+    converted_list.reverse()
+    converted_string = ''
+    #Add 33 to each number. Then convert to ascii character
+    for i in converted_list:
+        i = i + 33
+        converted_string += chr(i)
+    print(ascii_list)
+    print(converted_list)
+    print(converted_string)
+    print(byte_string)
 
-encode_string('hello world')
+    
+
+#encode_string('hello world')
 encode_string('sure')
