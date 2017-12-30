@@ -25,7 +25,7 @@ def encode_string(word): # word is a 4 byte/ 32 bit length
     converted_list = []
     #divide it into 4 numbers
     x = converted
-    print(x)
+    # print(x)
     # Repeatedly divide by 85 keeping the remainder until result is less than 85
     # This gives us the base number for the encoding
     while x != 0: 
@@ -37,25 +37,56 @@ def encode_string(word): # word is a 4 byte/ 32 bit length
     for i in converted_list:
         i = i + 33
         converted_string += chr(i)
-    print(ascii_list)
-    print(converted_list)
-    print(converted_string)
-    print(byte_string)
+    # print(ascii_list)
+    # print(converted_list)
+    # print(byte_string)
+    # print(converted_string)
+    return converted_string
 
 def decode_string(word):
-    word_list = []
+    converted_list = []
     word = word[::-1]
     for a,b  in enumerate(word):
         c = -33 + ord(b)
-        word_list.append(c * 85 **a)
-    print(sum(word_list), word_list)
+        converted_list.append(c * 85 **a)
+    # print(sum(converted_list), converted_list)
+    converted = bin(sum(converted_list))
+    converted = converted[2:]
+    while len(converted) <32: #pad converted with 000s
+        converted = '0' + converted
+    #divide converted into 4 bytes
+    byte_list = []
+    while len(converted)>1:
+        byte_list.append(converted[:8])
+        converted = converted[8:]
+    #convert bytelist into ascii
+    return_string = ""
+    for byte in byte_list:
+        letter = int(byte,2)
+        letter = chr(letter)
+        return_string += letter
+    
+    # print(byte_list)
+    # print(return_string)
+    return return_string
         
 
-#encode_string('hello world')
+# encode_string('hello world')
+# print(decode_string(r"""+F81(_Lnf5/6[,"""))
 # encode_string('sure')
+# decode_string('F*2M7')
 # encode_string('fire')
+# decode_string('Anc9s')
 # encode_string('bowl')
+# decode_string('@W-I,')
 # encode_string('hare')
-# encode_string('cool')
-encode_string('sure')
-decode_string('F*2M7')
+# decode_string('@rH:%')
+# print(r'/mo[')
+# encode_string(r'/mo[')
+# decode_string('05YW3')
+# print('hel+llp')
+# print(encode_string('sure'))
+spam = 'hell'
+print(encode_string(spam))
+spam = encode_string(spam)
+print(decode_string(spam))
