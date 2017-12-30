@@ -42,7 +42,20 @@ def encode_string(word): # word is a 4 byte/ 32 bit length
     print(converted_string)
     print(byte_string)
 
-    
+def decode_string(word):
+    word_list = []
+    word = word[::-1]
+    for a,b  in enumerate(word):
+        c = -33 + ord(b)
+        word_list.append(c * 85 **a)
+    print(sum(word_list), word_list)
+        
 
 #encode_string('hello world')
+# encode_string('sure')
+# encode_string('fire')
+# encode_string('bowl')
+# encode_string('hare')
+# encode_string('cool')
 encode_string('sure')
+decode_string('F*2M7')
