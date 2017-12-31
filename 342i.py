@@ -70,7 +70,20 @@ def decode_string(word):
     # print(return_string)
     return return_string
         
-
+def encode_graph(paragraph):
+    """Receives text string of any length
+    divides it into 4 char words and passes
+    those off to encode_string
+        Returns a string
+    """
+    word = ""
+    if len(paragraph) <= 4:
+        if len(paragraph) < 4:
+            paragraph += chr(0)#"0" #adds a space to make paragraph 4 units long
+        return encode_string(paragraph)
+    else:
+        word = encode_string(paragraph[:4])
+        return word + encode_graph(paragraph[4:])
 # encode_string('hello world')
 # print(decode_string(r"""+F81(_Lnf5/6[,"""))
 # encode_string('sure')
@@ -90,3 +103,8 @@ spam = 'hell'
 print(encode_string(spam))
 spam = encode_string(spam)
 print(decode_string(spam))
+print('\n')
+spam = 'Attack at dawn'
+jam = 'Mom, send dollars!'
+print(encode_graph(spam))
+print(encode_graph(jam))
