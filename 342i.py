@@ -14,12 +14,18 @@ ASII character:
 def encode_string(word): # word is a 4 byte/ 32 bit length
     ascii_list = [ord(x) for x in word] #convert word into a list of ascii values
     byte_string = ''
+    buff = 0
     # convert ascii values to binary... ensure length is in multiples of 4(8 is a byte)
     for x in ascii_list:
-        byte = "{0:b}".format(x)
-        while len(byte) % 4 != 0:
-            byte = '0' + byte
-        byte_string += byte
+        if x == 0:
+            buff += 1
+            byte = '00000000'#"{0:b}".format(x)
+            byte_string += byte
+        else:
+            byte = "{0:b}".format(x)
+            while len(byte) % 4 != 0:
+                byte = '0' + byte
+            byte_string += byte
     # Convert the 32 bit binary string to integer
     converted = int(byte_string,2)
     converted_list = []
@@ -37,6 +43,8 @@ def encode_string(word): # word is a 4 byte/ 32 bit length
     for i in converted_list:
         i = i + 33
         converted_string += chr(i)
+    if buff > 0:
+        converted_string = converted_string[:-buff]
     # print(ascii_list)
     # print(converted_list)
     # print(byte_string)
@@ -78,7 +86,7 @@ def encode_graph(paragraph):
     """
     word = ""
     if len(paragraph) <= 4:
-        if len(paragraph) < 4:
+        while len(paragraph) < 4:
             paragraph += chr(0)#"0" #adds a space to make paragraph 4 units long
         return encode_string(paragraph)
     else:
@@ -108,3 +116,8 @@ spam = 'Attack at dawn'
 jam = 'Mom, send dollars!'
 print(encode_graph(spam))
 print(encode_graph(jam))
+print(encode_graph('.'))
+# print(decode_string('6$.3W'))
+# print(decode_string('@r!2q'))
+# print(decode_string('F<G+&'))
+# print(decode_string('GA])g'))
