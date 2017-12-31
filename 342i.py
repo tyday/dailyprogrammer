@@ -104,37 +104,6 @@ def decode_graph(paragraph):
         word = decode_string(paragraph[:5])
         return word + decode_graph(paragraph[5:])
 
-
-# encode_string('hello world')
-# print(decode_string(r"""+F81(_Lnf5/6[,"""))
-# encode_string('sure')
-# decode_string('F*2M7')
-# encode_string('fire')
-# decode_string('Anc9s')
-# encode_string('bowl')
-# decode_string('@W-I,')
-# encode_string('hare')
-# decode_string('@rH:%')
-# print(r'/mo[')
-# encode_string(r'/mo[')
-# decode_string('05YW3')
-# print('hel+llp')
-# print(encode_string('sure'))
-# spam = 'hell'
-# print(encode_string(spam))
-# spam = encode_string(spam)
-# print(decode_string(spam))
-# print('\n')
-# spam = 'Attack at dawn'
-# jam = 'Mom, send dollars!'
-# print(encode_graph(spam))
-# print(encode_graph(jam))
-# print(encode_graph('.'))
-# print(decode_string('6$.3W'))
-# print(decode_graph('6$.3W@r!2qF<G+&GA['))
-# # print(decode_string('@r!2q'))
-# # print(decode_string('F<G+&'))
-# # print(decode_string('GA])g'))
 if __name__ == '__main__':
     ans = ""
     while ans != '0':
