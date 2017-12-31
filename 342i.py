@@ -92,6 +92,19 @@ def encode_graph(paragraph):
     else:
         word = encode_string(paragraph[:4])
         return word + encode_graph(paragraph[4:])
+
+def decode_graph(paragraph):
+    word = ""
+    if len(paragraph) <=5:
+        while len(paragraph)<5:
+            pass
+            paragraph += 'u'
+        return decode_string(paragraph)
+    else: 
+        word = decode_string(paragraph[:5])
+        return word + decode_graph(paragraph[5:])
+
+
 # encode_string('hello world')
 # print(decode_string(r"""+F81(_Lnf5/6[,"""))
 # encode_string('sure')
@@ -107,17 +120,31 @@ def encode_graph(paragraph):
 # decode_string('05YW3')
 # print('hel+llp')
 # print(encode_string('sure'))
-spam = 'hell'
-print(encode_string(spam))
-spam = encode_string(spam)
-print(decode_string(spam))
-print('\n')
-spam = 'Attack at dawn'
-jam = 'Mom, send dollars!'
-print(encode_graph(spam))
-print(encode_graph(jam))
-print(encode_graph('.'))
+# spam = 'hell'
+# print(encode_string(spam))
+# spam = encode_string(spam)
+# print(decode_string(spam))
+# print('\n')
+# spam = 'Attack at dawn'
+# jam = 'Mom, send dollars!'
+# print(encode_graph(spam))
+# print(encode_graph(jam))
+# print(encode_graph('.'))
 # print(decode_string('6$.3W'))
-# print(decode_string('@r!2q'))
-# print(decode_string('F<G+&'))
-# print(decode_string('GA])g'))
+# print(decode_graph('6$.3W@r!2qF<G+&GA['))
+# # print(decode_string('@r!2q'))
+# # print(decode_string('F<G+&'))
+# # print(decode_string('GA])g'))
+if __name__ == '__main__':
+    ans = ""
+    while ans != '0':
+        print("Enter 'e' to encode. 'd' to decode or '0' to exit")
+        ans = input()
+        if ans == 'e':
+            code = input('Enter text to encode: ')
+            print(encode_graph(code))
+            print(decode_graph(encode_graph(code)) + '\n')
+        elif ans == 'd':
+            code = input('Enter text to decode: ')
+            print(decode_graph(code))
+            print(encode_graph(decode_graph(code)) + '\n')
